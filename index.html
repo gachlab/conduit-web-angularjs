@@ -15,26 +15,27 @@
       type="text/css"
     />
     <link rel="stylesheet" href="//demo.productionready.io/main.css" />
-    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.min.js"></script>
-    <script src="https://unpkg.com/vue-router/dist/vue-router.min.js"></script>
-    <script src="header.js"></script>
-    <script src="footer.js"></script>
-    <script src="tags-popular.js"></script>
-    <script src="articles-feed.js"></script>
-    <script src="articles-list.js"></script>
-    <script src="articles-list-item.js"></script>
-    <script src="articles-preview.js"></script>
-    <script src="articles-meta.js"></script>
-    <script src="buttons-favorite.js"></script>
-    <script src="home-page-service.js"></script>
-    <script src="home-page.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.0/angular.min.js"></script>
   </head>
   <body>
-    <div id="app">
+    <div ng-app="app">
       <conduit-header></conduit-header>
-      <router-view></router-view>
+      <conduit-home-page></conduit-home-page>
       <conduit-footer></conduit-footer>
     </div>
     <script src="index.js"></script>
+    <script src="conduit-home-page-service.js"></script>
+
+    <script src="conduit-header.js"></script>
+    <script src="conduit-footer.js"></script>
+
+    <script src="conduit-buttons-favorite.js"></script>
+    <script src="conduit-articles-meta.js"></script>
+    <script src="conduit-articles-preview.js"></script>
+    <script src="conduit-articles-list-item.js"></script>
+    <script src="conduit-articles-list.js"></script>
+    <script src="conduit-articles-feeds.js"></script>
+    <script src="conduit-tags-popular.js"></script>
+    <script src="conduit-home-page.js"></script>
   </body>
 </html>
