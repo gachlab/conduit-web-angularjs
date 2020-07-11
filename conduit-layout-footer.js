@@ -1,4 +1,4 @@
-angular.module("app").component("conduitFooter", {
+angular.module("app").component("conduitLayoutFooter", {
   template: `
     <footer>
       <div class="container">

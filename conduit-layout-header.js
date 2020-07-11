@@ -1,4 +1,4 @@
-angular.module("app").component("conduitHeader", {
+angular.module("app").component("conduitLayoutHeader", {
   template: ` <nav class="navbar navbar-light">
     <div class="container">
       <a class="navbar-brand"  href="/">conduit</a>
