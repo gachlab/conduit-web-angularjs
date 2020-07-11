@@ -15,20 +15,19 @@
       type="text/css"
     />
     <link rel="stylesheet" href="//demo.productionready.io/main.css" />
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.0/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.0/angular.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.8.0/angular-route.js"></script>
   </head>
   <body>
     <div ng-app="app">
       <conduit-layout-header></conduit-layout-header>
-      <conduit-home-page></conduit-home-page>
+      <ng-view></ng-view>
       <conduit-layout-footer></conduit-layout-footer>
     </div>
     <script src="index.js"></script>
-    <script src="conduit-home-page-service.js"></script>
 
-    <script src="conduit-header.js"></script>
-    <script src="conduit-footer.js"></script>
-
+    <script src="conduit-layout-header.js"></script>
+    <script src="conduit-layout-footer.js"></script>
     <script src="conduit-buttons-favorite.js"></script>
     <script src="conduit-articles-meta.js"></script>
     <script src="conduit-articles-preview.js"></script>
@@ -36,6 +35,7 @@
     <script src="conduit-articles-list.js"></script>
     <script src="conduit-articles-feeds.js"></script>
     <script src="conduit-tags-popular.js"></script>
-    <script src="conduit-home-page.js"></script>
+    <script src="conduit-pages-home-service.js"></script>
+    <script src="conduit-pages-home.js"></script>
   </body>
 </html>

@@ -1,4 +1,4 @@
-angular.module("app").component("conduitHomePage", {
+angular.module("app").component("conduitPagesHome", {
   template: `
   <div class="home-page">
     <div class="banner">
@@ -42,7 +42,7 @@ angular.module("app").component("conduitHomePage", {
     </div>
   </div>
 `,
-  controller: function (homePageService) {
+  controller: function (conduiPagesHomeService) {
     var ctrl = this;
 
     ctrl.$onInit = function () {
@@ -52,10 +52,10 @@ angular.module("app").component("conduitHomePage", {
       ];
       ctrl.selectedFeed = "all";
 
-      homePageService.fetchTags().then(function (tags) {
+      conduiPagesHomeService.fetchTags().then(function (tags) {
         ctrl.tags = tags;
       });
-      homePageService
+      conduiPagesHomeService
         .fetchArticles({ limit: 10, offset: 0, feed: ctrl.feeds[1] })
         .then(function (articles) {
           ctrl.articles = articles;
@@ -68,7 +68,7 @@ angular.module("app").component("conduitHomePage", {
         };
         ctrl.feeds[2] = tagFeed;
         ctrl.selectedFeed = tagFeed.id;
-        homePageService
+        conduiPagesHomeService
           .fetchArticles({
             limit: 10,
             offset: 0,
@@ -78,7 +78,7 @@ angular.module("app").component("conduitHomePage", {
       };
       ctrl.onFeedSelected = function (selectedFeed) {
         ctrl.selectedFeed = selectedFeed.id;
-        homePageService
+        conduiPagesHomeService
           .fetchArticles({
             limit: 10,
             offset: 0,

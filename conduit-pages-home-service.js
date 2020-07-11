@@ -1,4 +1,4 @@
-angular.module("app").factory("homePageService", function ($http) {
+angular.module("app").factory("conduiPagesHomeService", function ($http) {
   return {
     fetchTags() {
       return (
