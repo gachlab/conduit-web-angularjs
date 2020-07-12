@@ -21,9 +21,5 @@ angular.module("app").component("conduitTagsPopular", {
     tags: "<",
     onSelect: "<",
   },
-  controller: function () {
-    this.$onChanges = function (changes) {
-      console.log(changes);
-    };
-  },
+  controller: function () {},
 });

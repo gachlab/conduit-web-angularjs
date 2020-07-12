@@ -1,5 +1,5 @@
 angular.module("app").component("conduitPagesHome", {
-  template: html`
+  template: `
     <div class="home-page">
       <div class="banner">
         <div class="container">
@@ -36,55 +36,67 @@ angular.module("app").component("conduitPagesHome", {
       </div>
     </div>
   `,
-  controller: function (conduiPagesHomeService) {
+  controller: function ($q) {
     var ctrl = this;
 
     ctrl.$onInit = function () {
-      ctrl.feeds = [
-        { id: "personal", name: "Your feed" },
-        { id: "all", name: "Global Feed" },
-      ];
-      ctrl.selectedFeed = "all";
-
-      conduiPagesHomeService.fetchTags().then(function (tags) {
-        ctrl.tags = tags;
-      });
-      conduiPagesHomeService
-        .fetchArticles({ limit: 10, offset: 0, feed: ctrl.feeds[1] })
-        .then(function (articles) {
-          ctrl.articles = articles;
+      $q(function (resolve, reject) {
+        ConduitPagesHomeService.init().then(function (state) {
+          resolve(state);
         });
-
-      ctrl.onTagSelected = function (tag) {
-        var tagFeed = {
-          id: tag.toLowerCase(),
-          name: "#" + tag,
-        };
-        ctrl.feeds[2] = tagFeed;
-        ctrl.selectedFeed = tagFeed.id;
-        conduiPagesHomeService
-          .fetchArticles({
-            limit: 10,
-            offset: 0,
-            feed: tagFeed,
-          })
-          .then((articles) => (ctrl.articles = articles));
-      };
-      ctrl.onFeedSelected = function (selectedFeed) {
-        ctrl.selectedFeed = selectedFeed.id;
-        conduiPagesHomeService
-          .fetchArticles({
-            limit: 10,
-            offset: 0,
-            feed: selectedFeed,
-          })
-          .then((articles) => (ctrl.articles = articles));
-      };
-      ctrl.onFavoritedArticle = function (article) {
-        console.log(article);
-      };
+      }).then(function (state) {
+        ctrl.setState(state);
+      });
+    };
+    ctrl.tags = undefined;
+    ctrl.onTagSelected = function (tag) {
+      $q(function (resolve, reject) {
+        ConduitPagesHomeService.onTagSelected({
+          tag,
+          state: ctrl.getState(),
+        }).then(function (state) {
+          resolve(state);
+        });
+      }).then(function (state) {
+        ctrl.setState(state);
+      });
+    };
+    ctrl.onFeedSelected = function (feed) {
+      $q(function (resolve, reject) {
+        ConduitPagesHomeService.onFeedSelected({
+          feed,
+          state: ctrl.getState(),
+        }).then(function (state) {
+          resolve(state);
+        });
+      }).then(function (state) {
+        ctrl.setState(state);
+      });
+    };
+    ctrl.onFavoritedArticle = function (article) {
+      console.log(article);
     };
 
-    ctrl.onTagSelected = console.log;
+    ctrl.getState = function () {
+      return JSON.parse(
+        JSON.stringify({
+          articles: ctrl.articles,
+          pages: ctrl.pages,
+          tags: ctrl.tags,
+          feeds: ctrl.feeds,
+          selectedFeed: ctrl.selectedFeed,
+          selectedPage: ctrl.selectedPage,
+        })
+      );
+    };
+
+    ctrl.setState = function (input) {
+      ctrl.articles = input.articles;
+      ctrl.pages = input.pages;
+      ctrl.tags = input.tags;
+      ctrl.feeds = input.feeds;
+      ctrl.selectedFeed = input.selectedFeed;
+      ctrl.selectedPage = input.selectedPage;
+    };
   },
 });
