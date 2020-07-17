@@ -11,11 +11,11 @@ angular.module("app").component("conduitPagesHome", {
         <div class="row">
           <div class="col-md-9">
             <conduit-articles-feeds
-              feeds="$ctrl.feeds"
-              selected="$ctrl.selectedFeed"
+              feeds="$ctrl.state.feeds"
+              selected="$ctrl.state.selectedFeed"
               on-select="$ctrl.onFeedSelected"
             ></conduit-articles-feeds>
-            <div ng-repeat="article in $ctrl.articles">
+            <div ng-repeat="article in $ctrl.state.articles">
               <conduit-articles-preview article="article">
                 <conduit-articles-meta article="article">
                   <conduit-buttons-favorite
@@ -28,7 +28,7 @@ angular.module("app").component("conduitPagesHome", {
           </div>
           <div class="col-md-3">
             <conduit-tags-popular
-              tags="$ctrl.tags"
+              tags="$ctrl.state.tags"
               on-select="$ctrl.onTagSelected"
             ></conduit-tags-popular>
           </div>
@@ -38,6 +38,7 @@ angular.module("app").component("conduitPagesHome", {
   `,
   controller: function ($q) {
     var ctrl = this;
+    ctrl.state = {};
 
     ctrl.$onInit = function () {
       $q(function (resolve, reject) {
@@ -48,7 +49,7 @@ angular.module("app").component("conduitPagesHome", {
         ctrl.setState(state);
       });
     };
-    ctrl.tags = undefined;
+
     ctrl.onTagSelected = function (tag) {
       $q(function (resolve, reject) {
         ConduitPagesHomeService.onTagSelected({
@@ -61,6 +62,7 @@ angular.module("app").component("conduitPagesHome", {
         ctrl.setState(state);
       });
     };
+
     ctrl.onFeedSelected = function (feed) {
       $q(function (resolve, reject) {
         ConduitPagesHomeService.onFeedSelected({
@@ -73,30 +75,19 @@ angular.module("app").component("conduitPagesHome", {
         ctrl.setState(state);
       });
     };
+
     ctrl.onFavoritedArticle = function (article) {
       console.log(article);
     };
 
     ctrl.getState = function () {
-      return JSON.parse(
-        JSON.stringify({
-          articles: ctrl.articles,
-          pages: ctrl.pages,
-          tags: ctrl.tags,
-          feeds: ctrl.feeds,
-          selectedFeed: ctrl.selectedFeed,
-          selectedPage: ctrl.selectedPage,
-        })
-      );
+      return JSON.parse(JSON.stringify(ctrl.state));
     };
 
     ctrl.setState = function (input) {
-      ctrl.articles = input.articles;
-      ctrl.pages = input.pages;
-      ctrl.tags = input.tags;
-      ctrl.feeds = input.feeds;
-      ctrl.selectedFeed = input.selectedFeed;
-      ctrl.selectedPage = input.selectedPage;
+      Object.keys(input).forEach(function (property) {
+        ctrl.state[property] = input[property];
+      });
     };
   },
 });

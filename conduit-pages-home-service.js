@@ -15,7 +15,7 @@ const ConduitPagesHomeService = (function () {
         };
       })
       .then(function (state) {
-        return createState({
+        return {
           articles: state.articles.data,
           pages: state.articles.meta.pages,
           tags: state.tags.tags,
@@ -25,7 +25,7 @@ const ConduitPagesHomeService = (function () {
             { id: "all", name: "Global Feed" },
           ],
           selectedPage: 1,
-        });
+        };
       });
   }
 
@@ -60,14 +60,14 @@ const ConduitPagesHomeService = (function () {
       page: 1,
       feed: input.feed,
     }).then(function (articles) {
-      return createState({
+      return {
         articles: articles.data,
         pages: articles.meta.pages,
         tags: input.state.tags,
         feeds: input.state.feeds,
         selectedFeed: input.feed.id,
         selectedPage: 1,
-      });
+      };
     });
   }
 
@@ -78,16 +78,14 @@ const ConduitPagesHomeService = (function () {
       feed: input.state.feeds.find(
         (feed) => feed.id === input.state.selectedFeed
       ),
-    }).then((response) =>
-      createState({
-        articles: response.data,
-        pages: response.meta.pages,
-        selectedPage: input.page,
-        tags: input.state.tags,
-        feeds: input.state.feeds,
-        selectedFeed: input.state.selectedFeed,
-      })
-    );
+    }).then((response) => ({
+      articles: response.data,
+      pages: response.meta.pages,
+      selectedPage: input.page,
+      tags: input.state.tags,
+      feeds: input.state.feeds,
+      selectedFeed: input.state.selectedFeed,
+    }));
   }
 
   function fetchArticles(filter) {
@@ -131,17 +129,6 @@ const ConduitPagesHomeService = (function () {
     return Object.assign({}, article, {
       authorHref: window.location.href + "profile/" + article.author.username,
     });
-  }
-
-  function createState(input) {
-    return {
-      articles: input.articles,
-      pages: input.pages,
-      tags: input.tags,
-      feeds: input.feeds,
-      selectedFeed: input.selectedFeed,
-      selectedPage: input.selectedPage,
-    };
   }
 
   return {
