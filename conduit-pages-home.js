@@ -15,16 +15,9 @@ angular.module("app").component("conduitPagesHome", {
               selected="$ctrl.state.selectedFeed"
               on-select="$ctrl.onFeedSelected"
             ></conduit-articles-feeds>
-            <div ng-repeat="article in $ctrl.state.articles">
-              <conduit-articles-preview article="article">
-                <conduit-articles-meta article="article">
-                  <conduit-buttons-favorite
-                    article="article"
-                    on-favorited="$ctrl.onFavoritedArticle"
-                  ></conduit-buttons-favorite>
-                </conduit-articles-meta>
-              </conduit-articles-preview>
-            </div>
+            <conduit-articles-list
+              articles="$ctrl.state.articles"
+            ></conduit-articles-list>
           </div>
           <div class="col-md-3">
             <conduit-tags-popular
@@ -74,10 +67,6 @@ angular.module("app").component("conduitPagesHome", {
       }).then(function (state) {
         ctrl.setState(state);
       });
-    };
-
-    ctrl.onFavoritedArticle = function (article) {
-      console.log(article);
     };
 
     ctrl.getState = function () {
