@@ -1,34 +1,5 @@
 angular.module("app").component("conduitPagesHome", {
-  template: `
-    <div class="home-page">
-      <div class="banner">
-        <div class="container">
-          <h1 class="logo-font">conduit</h1>
-          <p>A place to share your knowledge.</p>
-        </div>
-      </div>
-      <div class="container page">
-        <div class="row">
-          <div class="col-md-9">
-            <conduit-articles-feeds
-              feeds="$ctrl.state.feeds"
-              selected="$ctrl.state.selectedFeed"
-              on-select="$ctrl.onFeedSelected"
-            ></conduit-articles-feeds>
-            <conduit-articles-list
-              articles="$ctrl.state.articles"
-            ></conduit-articles-list>
-          </div>
-          <div class="col-md-3">
-            <conduit-tags-popular
-              tags="$ctrl.state.tags"
-              on-select="$ctrl.onTagSelected"
-            ></conduit-tags-popular>
-          </div>
-        </div>
-      </div>
-    </div>
-  `,
+  templateUrl: "conduit-pages-home/template.html",
   controller: function ($q) {
     var ctrl = this;
     ctrl.state = {};
