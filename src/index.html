@@ -1,41 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Conduit</title>
-    <link
-      href="//code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css"
-      rel="stylesheet"
-      type="text/css"
-    />
-    <link
-      href="//fonts.googleapis.com/css?family=Titillium+Web:700|Source+Serif+Pro:400,700|Merriweather+Sans:400,700|Source+Sans+Pro:400,300,600,700,300italic,400italic,600italic,700italic"
-      rel="stylesheet"
-      type="text/css"
-    />
-    <link rel="stylesheet" href="//demo.productionready.io/main.css" />
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.0/angular.min.js"></script>
-    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.8.0/angular-route.min.js"></script>
-  </head>
-  <body>
-    <div ng-app="app">
-      <conduit-layout-header></conduit-layout-header>
-      <ng-view></ng-view>
-      <conduit-layout-footer></conduit-layout-footer>
-    </div>
-    <script src="index.js"></script>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Conduit</title>
+		<link href="//code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" rel="stylesheet" type="text/css" />
+		<link
+			href="dependencies/fonts.css"
+			rel="stylesheet"
+			type="text/css"
+		/>
+		<link rel="stylesheet" href="dependencies/main.min.css" />
+		<script src="dependencies/angular.min.js"></script>
+		<script src="dependencies/angular-route.min.js"></script>
+	</head>
+	<body>
+		<div ng-app="app">
+			<conduit-layout-header></conduit-layout-header>
+			<ng-view></ng-view>
+			<conduit-layout-footer></conduit-layout-footer>
+		</div>
+		<script src="index.js"></script>
 
-    <script src="conduit-layout-header/component.js"></script>
-    <script src="conduit-layout-footer/component.js"></script>
-    <script src="conduit-buttons-favorite/component.js"></script>
-    <script src="conduit-articles-list-item/component.js"></script>
-    <script src="conduit-articles-list/component.js"></script>
-    <script src="conduit-articles-meta/component.js"></script>
-    <script src="conduit-articles-preview/component.js"></script>
-    <script src="conduit-articles-feeds/component.js"></script>
-    <script src="conduit-tags-popular/conduit-tags-popular.js"></script>
-    <script src="conduit-pages-home/service.js"></script>
-    <script src="conduit-pages-home/component.js"></script>
-  </body>
+		<script src="conduit-layout-header/component.js"></script>
+		<script src="conduit-layout-footer/component.js"></script>
+		<script src="conduit-buttons-favorite/component.js"></script>
+		<script src="conduit-articles-list-item/component.js"></script>
+		<script src="conduit-articles-list/component.js"></script>
+		<script src="conduit-articles-meta/component.js"></script>
+		<script src="conduit-articles-preview/component.js"></script>
+		<script src="conduit-articles-feeds/component.js"></script>
+		<script src="conduit-tags-popular/conduit-tags-popular.js"></script>
+		<script src="conduit-pages-home/service.js"></script>
+		<script src="conduit-pages-home/component.js"></script>
+	</body>
 </html>

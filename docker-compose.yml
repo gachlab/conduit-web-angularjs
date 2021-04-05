@@ -1,6 +1,6 @@
 version: "3.8"
 services:
-  conduit-web-angularjs:
+  gachlab-conduit-web-angularjs:
     build: ./
     image: gachlab/conduit-web-angularjs:latest    
     volumes:
