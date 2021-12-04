@@ -7,6 +7,8 @@ import conduitArticlesListItem from './components/conduit-articles-list-item';
 import conduitArticlesPreview from './components/conduit-articles-preview';
 import conduitArticlesMeta from './components/conduit-articles-meta';
 import conduitButtonsFavorite from './components/conduit-buttons-favorite';
+import conduitLayoutFooter from './conduit-layout-footer';
+import conduitLayoutHeader from './conduit-layout-header';
 
 
 const config = function ($routeProvider) {
@@ -17,6 +19,8 @@ const config = function ($routeProvider) {
 
 angular.module("app", ["ngRoute"]).config(config);
 
+conduitLayoutFooter()
+conduitLayoutHeader()
 conduitButtonsFavorite()
 conduitArticlesMeta()
 conduitArticlesPreview()
