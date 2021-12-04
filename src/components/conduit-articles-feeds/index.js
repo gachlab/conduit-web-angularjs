@@ -1,10 +1,13 @@
-(function (angular) {
+import angular from 'angular'
+import template from './template.html'
+
+export default function () {
 	angular.module('app').component('conduitArticlesFeeds', {
-		templateUrl: `conduit-articles-feeds/template.html`,
+		template,
 		bindings: {
 			feeds: '<',
 			selected: '<',
 			onSelect: '<',
 		},
 	});
-})(angular);
+}

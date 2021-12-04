@@ -1,9 +1,12 @@
-(function (angular) {
+import template from './template.html'
+import angular from 'angular'
+
+export default function () {
 	angular.module('app').component('conduitArticlesMeta', {
-		templateUrl: `conduit-articles-meta/template.html`,
+		template,
 		bindings: {
 			article: '<',
 		},
 		transclude: true,
 	});
-})(angular);
+};
