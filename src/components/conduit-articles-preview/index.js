@@ -1,7 +1,10 @@
-(function (angular) {
+import angular from 'angular'
+import template from './template.html'
+
+export default function () {
 	angular.module('app').component('conduitArticlesPreview', {
-		templateUrl: `conduit-articles-preview/template.html`,
+		template,
 		bindings: { article: '<' },
 		transclude: true,
 	});
-})(angular);
+};

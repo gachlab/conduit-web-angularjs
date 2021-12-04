@@ -1,9 +1,12 @@
-(function (angular) {
+import angular from 'angular'
+import template from './template.html'
+
+export default function () {
 	angular.module('app').component('conduitArticlesListItem', {
-		templateUrl: `conduit-articles-list-item/template.html`,
+		template,
 		bindings: {
 			article: '<',
 			onFavoritedArticle: '<',
 		},
 	});
-})(angular);
+}

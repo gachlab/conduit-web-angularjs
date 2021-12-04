@@ -1,14 +1,14 @@
 import { init, onTagSelected, onFeedSelected } from './service'
 import template from './template.html'
+import angular from 'angular'
 
 export default function () {
-	angular.module('app').component('conduitPagesHome', definition);
+	angular.module('app').component('conduitPagesHome', {
+		template,
+		controller,
+	});
 }
 
-var definition = {
-	template,
-	controller,
-};
 
 function controller($q) {
 	var ctrl = this;
