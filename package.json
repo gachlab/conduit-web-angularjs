@@ -6,7 +6,7 @@
     "start": "sirv public --host 0.0.0.0",
     "build": "rollup -c",
     "build:docker": "docker compose -f docker-compose.build.yml build ",
-    "push:docker":"($DOCKER_REGISTRY_SERVER_PASSWORD | docker login -u $DOCKER_REGISTRY_SERVER_USERNAME --password-stdin $DOCKER_REGISTRY_SERVER_URL) && docker compose -f docker-compose.build.yml push",
+    "push:docker":"$DOCKER_REGISTRY_SERVER_PASSWORD | docker login -u $DOCKER_REGISTRY_SERVER_USERNAME --password-stdin $DOCKER_REGISTRY_SERVER_URL && docker compose -f docker-compose.build.yml push",
     "dev": "npm i && rollup -c -w",
     "dev:docker": "docker compose up"
   },
