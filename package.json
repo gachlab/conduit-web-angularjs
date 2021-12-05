@@ -5,7 +5,10 @@
   "scripts": {
     "start": "sirv public --host 0.0.0.0",
     "build": "rollup -c",
-    "dev": "npm i && rollup -c -w"
+    "build:docker": "docker compose -f docker-compose.build.yml build ",
+    "push:docker":"($(DOCKER_REGISTRY_SERVER_PASSWORD) | docker login -u $(DOCKER_REGISTRY_SERVER_USERNAME) --password-stdin $(DOCKER_REGISTRY_SERVER_URL)) && docker compose -f docker-compose.build.yml push",
+    "dev": "npm i && rollup -c -w",
+    "dev:docker": "docker compose up"
   },
   "dependencies": {
     "sirv-cli": "^0.4.4"
@@ -16,7 +19,6 @@
     "@rollup/plugin-node-resolve": "^13.0.6",
     "angular": "^1.8.2",
     "angular-route": "^1.8.2",
-    "live-server": "^1.2.1",    
     "rollup": "^2.60.2",
     "rollup-plugin-livereload": "^2.0.5",
     "rollup-plugin-string": "^3.0.0",
@@ -32,5 +34,5 @@
     "url": "https://github.com/gachlab/conduit-web-angularjs/issues"
   },
   "homepage": "https://github.com/gachlab/conduit-web-angularjs#readme",
-  "description": "" 
+  "description": ""
 }

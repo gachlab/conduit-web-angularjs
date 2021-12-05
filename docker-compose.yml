@@ -1,9 +1,0 @@
-version: "3.8"
-services:
-  gachlab-conduit-web-angularjs:
-    build: ./
-    image: gachlab/conduit-web-angularjs:latest    
-    volumes:
-      - ./src:/usr/share/nginx/html
-    ports:
-      - 4280:80
