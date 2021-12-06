@@ -1,21 +1,12 @@
-name: Build Docker
-
-on:
-  push:
-    branches: [ main ]
+name: Build
+on: 
   pull_request:
     branches: [ main ]
 
 jobs:
   build:
-    runs-on: [self-hosted]
-    env:
-      DOCKER_REGISTRY_SERVER_USERNAME: ${{ secrets.DOCKER_REGISTRY_SERVER_USERNAME }}
-      DOCKER_REGISTRY_SERVER_PASSWORD: ${{ secrets.DOCKER_REGISTRY_SERVER_PASSWORD }}
-      DOCKER_REGISTRY_SERVER_URL: ${{ secrets.DOCKER_REGISTRY_SERVER_URL }}
+    runs-on: [self-hosted]  
     steps:
     - uses: actions/checkout@v2 
     - run: npm ci
-    - run: npm run build:docker
-    - run: env
-    - run: npm run push:docker
+    - run: npm run build    
