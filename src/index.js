@@ -29,11 +29,11 @@ import conduitArticlesMetaTemplate from './components/conduit-articles-meta/temp
 import conduitButtonsFavorite from './components/conduit-buttons-favorite';
 import conduitButtonsFavoriteTemplate from './components/conduit-buttons-favorite/template.html'
 
-import conduitLayoutFooter from './conduit-layout-footer';
-import conduitLayoutFooterTemplate from './conduit-layout-footer/template.html'
+import conduitLayoutFooter from './components/conduit-layout-footer';
+import conduitLayoutFooterTemplate from './components/conduit-layout-footer/template.html'
 
-import conduitLayoutHeader from './conduit-layout-header';
-import conduitLayoutHeaderTemplate from './conduit-layout-header/template.html'
+import conduitLayoutHeader from './components/conduit-layout-header';
+import conduitLayoutHeaderTemplate from './components/conduit-layout-header/template.html'
 
 const config = function ($routeProvider) {
   $routeProvider.when("/", {
