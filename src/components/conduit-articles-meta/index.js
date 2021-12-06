@@ -1,9 +1,11 @@
 export default function (dependencies) {
-	dependencies.angularModule.component('conduitArticlesMeta', {
+	const module = dependencies.angular.module('conduit.components.articles.meta', [])
+	module.component('conduitArticlesMeta', {
 		template: dependencies.template,
 		bindings: {
 			article: '<',
 		},
 		transclude: true,
 	});
+	return module
 };
