@@ -12,10 +12,11 @@ export default [{
         file: 'public/bundle.js',
         format: 'iife',
         globals: {
-            angular: 'angular'
+            angular: 'vendor.angular',
+            "angular-route": 'vendor.route'
         }
     },
-    external: ['angular'],
+    external: ['angular', 'angular-route'],
     plugins: [
         string({
             include: '**/*.html'
@@ -31,11 +32,11 @@ export default [{
         clearScreen: false
     },
 }, {
-    input: 'src/libs.js',
+    input: 'src/vendor.js',
     output: {
         file: 'public/vendor.js',
         format: 'iife',
-        name: 'angular'
+        name: 'vendor'
     },
     plugins: [
         resolve({
