@@ -4,7 +4,7 @@ networks:
     name: gachlab_default
 services:
   conduit-web-angular-js:
-    image: ${DOCKER_REGISTRY_HOST}/conduit-web-angular-js:${DOCKER_IMAGE_TAG}
+    image: ${DOCKER_REGISTRY_SERVER_USERNAME}/conduit-web-angular-js:${DOCKER_IMAGE_TAG}
     build:
       context: ./
       dockerfile: Dockerfile.build
