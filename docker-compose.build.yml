@@ -1,0 +1,14 @@
+version: '3.8'
+networks:
+  default:
+    name: gachlab_default
+services:
+  conduit-web-angular-js:
+    image: ${DOCKER_REGISTRY_SERVER_USERNAME}/conduit-web-angular-js:${DOCKER_IMAGE_TAG}
+    build:
+      context: ./
+      dockerfile: Dockerfile.build
+    labels:
+      traefik.http.routers.conduit-web-angular-js.rule: "Host(`conduit-web-angular-js.${DOMAIN}`)"
+      traefik.http.routers.conduit-web-angular-js.tls.certresolver: "le"
+      traefik.http.routers.conduit-web-angular-js.entrypoints: "websecure"      

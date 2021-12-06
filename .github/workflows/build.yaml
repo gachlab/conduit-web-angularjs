@@ -1,7 +1,4 @@
-# This workflow will do a clean install of node dependencies, cache/restore them, build the source code and run tests across different versions of node
-# For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
-
-name: Build
+name: Build Docker
 
 on:
   push:
@@ -11,12 +8,14 @@ on:
 
 jobs:
   build:
-
-    runs-on: [self-hosted,Linux]
-
- 
+    runs-on: [self-hosted]
+    env:
+      DOCKER_REGISTRY_SERVER_USERNAME: ${{ secrets.DOCKER_REGISTRY_SERVER_USERNAME }}
+      DOCKER_REGISTRY_SERVER_PASSWORD: ${{ secrets.DOCKER_REGISTRY_SERVER_PASSWORD }}
+      DOCKER_REGISTRY_SERVER_URL: ${{ secrets.DOCKER_REGISTRY_SERVER_URL }}
     steps:
     - uses: actions/checkout@v2 
     - run: npm ci
-    - run: npm run build --if-present
-    
+    - run: npm run build:docker
+    - run: env
+    - run: npm run push:docker
