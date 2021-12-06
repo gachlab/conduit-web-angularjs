@@ -1,9 +1,6 @@
-import angular from 'angular'
-import template from './template.html'
-
-export default function () {
-	angular.module('app').component('conduitArticlesPreview', {
-		template,
+export default function (dependencies) {
+	dependencies.angularModule.component('conduitArticlesPreview', {
+		template: dependencies.template,
 		bindings: { article: '<' },
 		transclude: true,
 	});

@@ -1,9 +1,6 @@
-import angular from 'angular'
-import template from './template.html'
-
-export default function () {
-	angular.module('app').component('conduitArticlesFeeds', {
-		template,
+export default function (dependencies) {
+	dependencies.angularModule.component('conduitArticlesFeeds', {
+		template: dependencies.template,
 		bindings: {
 			feeds: '<',
 			selected: '<',

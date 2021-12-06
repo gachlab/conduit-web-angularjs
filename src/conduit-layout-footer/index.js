@@ -1,8 +1,5 @@
-import angular from 'angular'
-import template from './template.html'
-
-export default function () {
-	angular.module('app').component('conduitLayoutFooter', {
-		template,
+export default function (dependencies) {
+	dependencies.angularModule.component('conduitLayoutFooter', {
+		template: dependencies.template,
 	});
 }
