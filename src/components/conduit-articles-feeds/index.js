@@ -1,5 +1,6 @@
 export default function (dependencies) {
-	dependencies.angularModule.component('conduitArticlesFeeds', {
+	const module = dependencies.angular.module('conduit.components.articles.feeds', [])
+	module.component('conduitArticlesFeeds', {
 		template: dependencies.template,
 		bindings: {
 			feeds: '<',
@@ -7,4 +8,5 @@ export default function (dependencies) {
 			onSelect: '<',
 		},
 	});
+	return module
 }

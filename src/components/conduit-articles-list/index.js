@@ -1,8 +1,10 @@
 export default function (dependencies) {
-	dependencies.angularModule.component('conduitArticlesList', {
+	const module = dependencies.angular.module('conduit.components.articles.list', [])
+	module.component('conduitArticlesList', {
 		template: dependencies.template,
 		bindings: {
 			articles: '<',
 		},
 	});
+	return module
 }

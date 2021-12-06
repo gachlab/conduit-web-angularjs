@@ -1,5 +1,7 @@
 export default function (dependencies) {
-	dependencies.angularModule.component('conduitLayoutFooter', {
+	const module = dependencies.angular.module('conduit.components.layout.footer', [])
+	module.component('conduitLayoutFooter', {
 		template: dependencies.template,
 	});
+	return module
 }

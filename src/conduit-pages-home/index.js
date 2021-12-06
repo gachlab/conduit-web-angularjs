@@ -1,10 +1,14 @@
 
 
 export default function (dependencies) {
-	dependencies.angularModule.component('conduitPagesHome', {
+	
+	const module = dependencies.angular.module('conduit.pages.home', [])
+	module.component('conduitPagesHome', {
 		template: dependencies.template,
 		controller,
 	});
+
+	return module;
 
 	function controller($q) {
 		var ctrl = this;
@@ -56,6 +60,4 @@ export default function (dependencies) {
 			});
 		};
 	}
-
-
 }
