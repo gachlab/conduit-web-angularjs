@@ -58,10 +58,10 @@ const modules = [
   }).name,
 ]
 
-const config = function ($routeProvider) {
+const config = ($routeProvider) =>
   $routeProvider.when("/", {
     template: "<conduit-pages-home></conduit-pages-home>",
   });
-};
+
 
 angular.module("conduit", ["ngRoute"].concat(modules)).config(config);
