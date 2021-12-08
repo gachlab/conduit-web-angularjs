@@ -1,20 +1,17 @@
-
-export {
-  init,
-  onFeedSelected,
-  onTagSelected,
-  onPageSelected
-};
+import { listArticles } from '../conduit-api-lib/articles'
+import { listTags } from '../conduit-api-lib/tags'
 
 
-function init() {
+
+
+export function init() {
   return Promise.all([
-    fetchArticles({
+    listArticles({
       limit: 10,
       page: 1,
       feed: { id: "all", name: "Global Feed" },
     }),
-    fetchTags(),
+    listTags(),
   ])
     .then(function (response) {
       return {
@@ -37,7 +34,7 @@ function init() {
     });
 }
 
-function onTagSelected(input) {
+export function onTagSelected(input) {
   return selectFeed({
     feed: {
       id: input.tag.toLowerCase(),
@@ -47,14 +44,14 @@ function onTagSelected(input) {
   });
 }
 
-function onFeedSelected(input) {
+export function onFeedSelected(input) {
   return selectFeed({
     feed: input.feed,
     state: input.state,
   });
 }
 
-function onPageSelected(input) {
+export function onPageSelected(input) {
   return changePage({ page: input.page, state: input.state });
 }
 
@@ -63,7 +60,7 @@ function selectFeed(input) {
     input.state.feeds[2] = input.feed;
   }
 
-  return fetchArticles({
+  return listArticles({
     limit: 10,
     page: 1,
     feed: input.feed,
@@ -80,7 +77,7 @@ function selectFeed(input) {
 }
 
 function changePage(input) {
-  return fetchArticles({
+  return listArticles({
     limit: 10,
     page: input.page,
     feed: input.state.feeds.find(
@@ -95,47 +92,4 @@ function changePage(input) {
     selectedFeed: input.state.selectedFeed,
   }));
 }
-
-function fetchArticles(filter) {
-  filter = Object.assign(filter, {
-    offset: filter.limit * (filter.page - 1),
-  });
-  const url = `https://conduit.productionready.io/api/articles${filter ? "?" : ""
-    }${filter.limit ? "limit=" + filter.limit : ""}${"&offset=" + filter.offset || 0
-    }${filter.feed.name.includes("#") ? "&tag=" + filter.feed.id : ""}`;
-
-  return fetch(url)
-    .then((response) => response.json())
-    .then((response) => ({
-      data: response.articles.map((article) =>
-        addArticleDetailLink(addProfilePageLink(article))
-      ),
-      meta: {
-        pages: Array.from(
-          new Array(Math.ceil(response.articlesCount / filter.limit)),
-          (val, index) => index + 1
-        ),
-      },
-    }));
-}
-
-function fetchTags() {
-  return fetch(
-    "https://conduit.productionready.io/api/tags"
-  ).then((response) => response.json());
-}
-
-function addArticleDetailLink(article) {
-  return Object.assign({}, article, {
-    href: window.location.href + "article/" + article.slug,
-  });
-}
-
-function addProfilePageLink(article) {
-  return Object.assign({}, article, {
-    authorHref: window.location.href + "profile/" + article.author.username,
-  });
-}
-
-
 
