@@ -16,18 +16,6 @@ import conduitArticlesFeedsTemplate from './components/conduit-articles-feeds/te
 import conduitArticlesList from './components/conduit-articles-list';
 import conduitArticlesListTemplate from './components/conduit-articles-list/template.html';
 
-import conduitArticlesListItem from './components/conduit-articles-list-item';
-import conduitArticlesListItemTemplate from './components/conduit-articles-list-item/template.html';
-
-import conduitArticlesPreview from './components/conduit-articles-preview';
-import conduitArticlesPreviewTemplate from './components/conduit-articles-preview/template.html';
-
-import conduitArticlesMeta from './components/conduit-articles-meta';
-import conduitArticlesMetaTemplate from './components/conduit-articles-meta/template.html'
-
-import conduitButtonsFavorite from './components/conduit-buttons-favorite';
-import conduitButtonsFavoriteTemplate from './components/conduit-buttons-favorite/template.html'
-
 import conduitLayoutFooter from './components/conduit-layout-footer';
 import conduitLayoutFooterTemplate from './components/conduit-layout-footer/template.html'
 
@@ -57,25 +45,6 @@ const modules = [
   conduitTagsPopular({
     angular,
     template: conduitTagsPopularTemplate
-  }).name,
-  conduitButtonsFavorite({
-    angular,
-    template: conduitButtonsFavoriteTemplate
-  }).name,
-
-  conduitArticlesMeta({
-    angular,
-    template: conduitArticlesMetaTemplate
-  }).name,
-
-  conduitArticlesPreview({
-    angular,
-    template: conduitArticlesPreviewTemplate
-  }).name,
-
-  conduitArticlesListItem({
-    angular,
-    template: conduitArticlesListItemTemplate
   }).name,
 
   conduitArticlesList({
