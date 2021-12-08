@@ -1,4 +1,37 @@
-<conduit-articles-list-item
-  ng-repeat="article in $ctrl.articles"
-  article="article"
-></conduit-articles-list-item>
+<div ng-repeat="article in $ctrl.articles">
+  <div class="article-preview">
+    <div ng-if="article" class="article-meta">
+      <a ng-if="article && article.author && article.author.image">
+        <img ng-src="{{article.author.image}}" />
+      </a>
+      <div class="info">
+        <a class="author" href="{{'#/profile/'+article.author.username}}"
+          >{{article.author.username}}</a
+        >
+        <span class="date">{{article.createdAt | date}}</span>
+      </div>
+      <div class="pull-xs-right">
+        <button
+          class="btn btn-sm btn-outline-primary"
+          ng-click="onFavorited(article)"
+        >
+          <i class="ion-heart"></i>
+          {{article.favoritesCount}}
+        </button>
+      </div>
+    </div>
+    <a class="preview-link" href="{{article.href}}">
+      <h1>{{article.title}}</h1>
+      <p>{{article.description}}</p>
+      <span>Read more...</span>
+      <ul class="tag-list">
+        <li
+          ng-repeat="tag in article.tagList"
+          class="tag-default tag-pill tag-outline"
+        >
+          {{tag}}
+        </li>
+      </ul>
+    </a>
+  </div>
+</div>
