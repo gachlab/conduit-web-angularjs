@@ -1,63 +1,70 @@
 
 
-export default function (dependencies) {
-	
+export default (dependencies) => {
+
 	const module = dependencies.angular.module('conduit.pages.home', [])
 	module.component('conduitPagesHome', {
 		template: dependencies.template,
 		controller,
 	});
-
 	return module;
 
 	function controller($q) {
-		var ctrl = this;
-		ctrl.state = {};
+		const ctrl = this;
+		const state = {}
+		ctrl.state = state;
+		ctrl.$onInit = onInit;
+		ctrl.onTagSelected = onTagSelected;
+		ctrl.onFeedSelected = onFeedSelected;
+		ctrl.getState = getState
+		ctrl.setState = setState;
 
-		ctrl.$onInit = function () {
-			$q(function (resolve, reject) {
-				dependencies.init().then(function (state) {
-					resolve(state);
-				});
-			}).then(function (state) {
-				ctrl.setState(state);
-			});
-		};
+		function onInit() {
+			$q((resolve, reject) =>
+				dependencies
+					.init()
+					.then((state) => resolve(state))
+					.catch(reject)
+			)
+				.then((state) => setState(state))
+				.catch(console.error);
+		}
 
-		ctrl.onTagSelected = function (tag) {
-			$q(function (resolve, reject) {
-				dependencies.onTagSelected({
-					tag,
-					state: ctrl.getState(),
-				}).then(function (state) {
-					resolve(state);
-				});
-			}).then(function (state) {
-				ctrl.setState(state);
-			});
-		};
+		function onTagSelected(tag) {
+			$q((resolve, reject) =>
+				dependencies
+					.onTagSelected({
+						tag,
+						state: getState(),
+					})
+					.then((state) => resolve(state)).catch(reject)
+			)
+				.then((state) => setState(state))
+				.catch(console.error);
+		}
 
-		ctrl.onFeedSelected = function (feed) {
-			$q(function (resolve, reject) {
-				dependencies.onFeedSelected({
-					feed,
-					state: ctrl.getState(),
-				}).then(function (state) {
-					resolve(state);
-				});
-			}).then(function (state) {
-				ctrl.setState(state);
-			});
-		};
+		function onFeedSelected(feed) {
+			$q((resolve, reject) =>
+				dependencies
+					.onFeedSelected({
+						feed,
+						state: getState(),
+					})
+					.then((state) => resolve(state))
+					.catch(console.error)
+			)
+				.then((state) => setState(state))
+				.catch(console.error);
+		}
 
-		ctrl.getState = function () {
-			return JSON.parse(JSON.stringify(ctrl.state));
-		};
+		function getState() {
+			return JSON.parse(JSON.stringify(state));
+		}
 
-		ctrl.setState = function (input) {
-			Object.keys(input).forEach(function (property) {
-				ctrl.state[property] = input[property];
-			});
-		};
+		function setState(input) {
+			Object.keys(input).forEach((property) =>
+				state[property] = input[property]
+			);
+		}
 	}
 }

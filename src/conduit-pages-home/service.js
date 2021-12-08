@@ -1,9 +1,6 @@
 import { listArticles } from '../conduit-api-lib/articles'
 import { listTags } from '../conduit-api-lib/tags'
 
-
-
-
 export function init() {
   return Promise.all([
     listArticles({
@@ -13,25 +10,21 @@ export function init() {
     }),
     listTags(),
   ])
-    .then(function (response) {
-      return {
-        articles: response[0],
-        tags: response[1],
-      };
-    })
-    .then(function (state) {
-      return {
-        articles: state.articles.data,
-        pages: state.articles.meta.pages,
-        tags: state.tags.tags,
-        selectedFeed: "all",
-        feeds: [
-          { id: "personal", name: "Your feed" },
-          { id: "all", name: "Global Feed" },
-        ],
-        selectedPage: 1,
-      };
-    });
+    .then((response) => ({
+      articles: response[0],
+      tags: response[1],
+    }))
+    .then((state) => ({
+      articles: state.articles.data,
+      pages: state.articles.meta.pages,
+      tags: state.tags.tags,
+      selectedFeed: "all",
+      feeds: [
+        { id: "personal", name: "Your feed" },
+        { id: "all", name: "Global Feed" },
+      ],
+      selectedPage: 1,
+    }))
 }
 
 export function onTagSelected(input) {
@@ -64,16 +57,14 @@ function selectFeed(input) {
     limit: 10,
     page: 1,
     feed: input.feed,
-  }).then(function (articles) {
-    return {
-      articles: articles.data,
-      pages: articles.meta.pages,
-      tags: input.state.tags,
-      feeds: input.state.feeds,
-      selectedFeed: input.feed.id,
-      selectedPage: 1,
-    };
-  });
+  }).then((articles) => ({
+    articles: articles.data,
+    pages: articles.meta.pages,
+    tags: input.state.tags,
+    feeds: input.state.feeds,
+    selectedFeed: input.feed.id,
+    selectedPage: 1,
+  }));
 }
 
 function changePage(input) {
@@ -92,4 +83,3 @@ function changePage(input) {
     selectedFeed: input.state.selectedFeed,
   }));
 }
-
