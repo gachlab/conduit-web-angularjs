@@ -2,7 +2,7 @@ export function listArticles(filter) {
   filter = Object.assign(filter, {
     offset: filter.limit * (filter.page - 1),
   });
-  const url = `https://conduit.productionready.io/api/articles${filter ? "?" : ""
+  const url = `https://api.realworld.io/api/articles${filter ? "?" : ""
     }${filter.limit ? "limit=" + filter.limit : ""}${"&offset=" + filter.offset || 0
     }${filter.feed.name.includes("#") ? "&tag=" + filter.feed.id : ""}`;
 

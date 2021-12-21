@@ -5,7 +5,7 @@ export default function (dependencies) {
 			template: dependencies.template,
 			bindings: {
 				tags: '<',
-				onSelect: '<',
+				onSelected: '<',
 			},
 		});
 }

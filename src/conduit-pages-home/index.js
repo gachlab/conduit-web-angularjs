@@ -1,22 +1,23 @@
+export default service
 
+function service(dependencies) {
+	return dependencies
+		.angular
+		.module('conduit.pages.home', [])
+		.component('conduitPagesHome', {
+			template: dependencies.template,
+			controller: controller(dependencies),
+		});
+}
 
-export default (dependencies) => {
-
-	const module = dependencies.angular.module('conduit.pages.home', [])
-	module.component('conduitPagesHome', {
-		template: dependencies.template,
-		controller,
-	});
-	return module;
-
-	function controller($q) {
+function controller(dependencies) {
+	return function ($q) {
 		const ctrl = this;
 		const state = {}
 		ctrl.state = state;
 		ctrl.$onInit = onInit;
-		ctrl.onTagSelected = onTagSelected;
-		ctrl.onFeedSelected = onFeedSelected;
-		ctrl.getState = getState
+		ctrl.onFeedSelected = onFeedSelected
+		ctrl.onTagSelected = onTagSelected
 		ctrl.setState = setState;
 
 		function onInit() {
@@ -30,35 +31,13 @@ export default (dependencies) => {
 				.catch(console.error);
 		}
 
-		function onTagSelected(tag) {
-			$q((resolve, reject) =>
-				dependencies
-					.onTagSelected({
-						tag,
-						state: getState(),
-					})
-					.then((state) => resolve(state)).catch(reject)
-			)
-				.then((state) => setState(state))
-				.catch(console.error);
-		}
-
 		function onFeedSelected(feed) {
-			$q((resolve, reject) =>
-				dependencies
-					.onFeedSelected({
-						feed,
-						state: getState(),
-					})
-					.then((state) => resolve(state))
-					.catch(console.error)
-			)
-				.then((state) => setState(state))
-				.catch(console.error);
+			return dependencies.onFeedSelected({ state, feed }).then(setState)
 		}
 
-		function getState() {
-			return JSON.parse(JSON.stringify(state));
+
+		function onTagSelected(tag) {
+			return dependencies.onTagSelected({ state, tag }).then(setState)
 		}
 
 		function setState(input) {

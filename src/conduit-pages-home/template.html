@@ -3,12 +3,19 @@
   <div class="container page">
     <div class="row">
       <div class="col-md-9">
-        <conduit-articles-feeds feeds="$ctrl.state.feeds" selected="$ctrl.state.selectedFeed"
-          on-select="$ctrl.onFeedSelected"></conduit-articles-feeds>
-        <conduit-articles-list articles="$ctrl.state.articles"></conduit-articles-list>
+        <conduit-articles-feeds
+          feeds="$ctrl.state.feeds"
+          on-selected="$ctrl.onFeedSelected"
+        ></conduit-articles-feeds>
+        <conduit-articles-list
+          articles="$ctrl.state.articles.data"
+        ></conduit-articles-list>
       </div>
       <div class="col-md-3">
-        <conduit-tags-popular tags="$ctrl.state.tags" on-select="$ctrl.onTagSelected"></conduit-tags-popular>
+        <conduit-tags-popular
+          tags="$ctrl.state.tags"
+          on-selected="$ctrl.onTagSelected"
+        ></conduit-tags-popular>
       </div>
     </div>
   </div>

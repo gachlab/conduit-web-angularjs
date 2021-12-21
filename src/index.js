@@ -2,7 +2,9 @@ import angular from 'angular'
 
 import conduitPagesHome from './conduit-pages-home';
 import conduitPagesHomeTemplate from './conduit-pages-home/template.html';
-import { init, onTagSelected, onFeedSelected } from './conduit-pages-home/service'
+import { init, onFeedSelected, onTagSelected } from './conduit-pages-home/service'
+import { listArticles } from './conduit-api-lib/articles'
+import { listTags } from './conduit-api-lib/tags'
 
 import conduitPageBanner from './components/conduit-layout-banner'
 import conduitPageBannerTemplate from './components/conduit-layout-banner/template.html'
@@ -35,27 +37,29 @@ const modules = [
     angular,
     template: conduitLayoutFooterTemplate
   }).name,
-  conduitPagesHome({
-    angular,
-    template: conduitPagesHomeTemplate,
-    init,
-    onTagSelected,
-    onFeedSelected
-  }).name,
   conduitTagsPopular({
     angular,
     template: conduitTagsPopularTemplate
   }).name,
-
   conduitArticlesList({
     angular,
     template: conduitArticlesListTemplate
   }).name,
-
   conduitArticlesFeeds({
     angular,
     template: conduitArticlesFeedsTemplate
   }).name,
+  conduitPagesHome({
+    angular,
+    template: conduitPagesHomeTemplate,
+    init: init({
+      listArticles,
+      listTags
+    }),
+    onFeedSelected: onFeedSelected(),
+    onTagSelected: onTagSelected()
+  }).name,
+
 ]
 
 const config = ($routeProvider) =>

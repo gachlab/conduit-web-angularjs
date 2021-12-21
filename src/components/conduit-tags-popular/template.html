@@ -11,7 +11,7 @@
     <a
       class="tag-default tag-pill"
       ng-repeat="tag in $ctrl.tags"
-      ng-click="$ctrl.onSelect(tag)"
+      ng-click="$ctrl.onSelected({id:tag})"
       >{{ tag }}</a
     >
   </div>
