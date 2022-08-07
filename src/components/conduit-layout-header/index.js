@@ -1,7 +1,11 @@
-export default function (dependencies) {
-	return dependencies.angular
-		.module('conduit.components.layout.header', [])
-		.component('conduitLayoutHeader', {
-			template: dependencies.template,
-		});
-};
+import template from "./template.html";
+
+export default (dependencies) =>
+  dependencies.angular
+    .module("conduit.components.layout.header", [])
+    .component("conduitLayoutHeader", {
+      bindings: {
+        current: "<",
+      },
+      template: dependencies.template || template,
+    });

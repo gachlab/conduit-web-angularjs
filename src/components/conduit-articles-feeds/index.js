@@ -1,13 +1,12 @@
-export default component
+import template from "./template.html";
 
-function component(dependencies) {
-	return dependencies.angular
-		.module('conduit.components.articles.feeds', [])
-		.component('conduitArticlesFeeds', {
-			template: dependencies.template,
-			bindings: {
-				feeds: '<',
-				onSelected: '<',
-			},
-		});
-}
+export default (dependencies) =>
+  dependencies.angular
+    .module("conduit.components.articles.feeds", [])
+    .component("conduitArticlesFeeds", {
+      template: dependencies.template || template,
+      bindings: {
+        feeds: "<",
+        onSelected: "<",
+      },
+    });

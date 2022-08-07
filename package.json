@@ -3,22 +3,22 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "start": "sirv public --host 0.0.0.0",
+    "start": "sirv public --host 0.0.0.0 --port 8080",
     "build": "rollup -c",
     "build:docker": "docker compose -f docker-compose.build.yml build ",
-    "push:docker":"echo $DOCKER_REGISTRY_SERVER_PASSWORD | docker login -u $DOCKER_REGISTRY_SERVER_USERNAME --password-stdin $DOCKER_REGISTRY_SERVER_URL && docker compose -f docker-compose.build.yml push",
-    "dev": "npm i && rollup -c -w",
+    "push:docker": "echo $DOCKER_REGISTRY_SERVER_PASSWORD | docker login -u $DOCKER_REGISTRY_SERVER_USERNAME --password-stdin $DOCKER_REGISTRY_SERVER_URL && docker compose -f docker-compose.build.yml push",
+    "dev": "rollup -c -w",
     "dev:docker": "docker compose up"
   },
   "dependencies": {
-    "sirv-cli": "^0.4.4"
+    "angular": "^1.8.3",
+    "angular-route": "^1.8.3"
   },
   "devDependencies": {
-    "@rollup/plugin-commonjs": "^21.0.1",
+    "@rollup/plugin-commonjs": "^22.0.2",
+    "sirv-cli": "2.0.2",
     "@rollup/plugin-html": "^0.2.4",
     "@rollup/plugin-node-resolve": "^13.0.6",
-    "angular": "^1.8.2",
-    "angular-route": "^1.8.2",
     "rollup": "^2.60.2",
     "rollup-plugin-livereload": "^2.0.5",
     "rollup-plugin-string": "^3.0.0",
